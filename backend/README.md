@@ -19,4 +19,4 @@ To get started developing right away:
 
 ## API Server
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+Information about the API server and how to use it can be found in the main README file.
