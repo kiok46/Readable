@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Divider from 'material-ui/Divider';
+
 import './App.css';
+import Category from './components/CategoriesContainer';
+import PostsContainer from './components/PostsContainer';
 
 class App extends Component {
+
+  renderPosts = () => {
+      return (
+          <PostsContainer/>
+      )
+  }
+
   render() {
     return (
-      <Provider>
-      </Provider>
+        <div>
+            <Category/>
+            <Divider/>
+            {this.renderPosts()}
+        </div>
     );
   }
 }
