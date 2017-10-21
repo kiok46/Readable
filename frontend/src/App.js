@@ -7,18 +7,12 @@ import PostsContainer from './components/PostsContainer';
 
 class App extends Component {
 
-  renderPosts = () => {
-      return (
-          <PostsContainer/>
-      )
-  }
-
   render() {
     return (
         <div>
             <Category/>
             <Divider/>
-            {this.renderPosts()}
+            <PostsContainer/>
         </div>
     );
   }

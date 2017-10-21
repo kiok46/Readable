@@ -17,6 +17,10 @@ class Category extends Component {
       open: false,
     };
 
+    componentWillMount() {
+        this.props.getCategories();
+    }
+
     handleOpen = () => {
       this.setState({open: true});
     };
@@ -25,8 +29,8 @@ class Category extends Component {
       this.setState({open: false});
     };
 
-    componentWillMount() {
-        this.props.getCategories();
+    renderPostsOfCategory = (name) => {
+        this.props.getPostsOfCategory(name);
     }
 
     renderCategory = () => {
@@ -35,7 +39,7 @@ class Category extends Component {
                 <Card className="row" style={{ margin: 3}} key={idx}>
                     <CardTitle title={category.name} />
                     <CardActions>
-                      <RaisedButton label="Posts" primary={true} style={styles.categoryStyle} />
+                      <RaisedButton label="Posts" primary={true} style={styles.categoryStyle} onClick={() => this.renderPostsOfCategory(category.name)}/>
                       <RaisedButton label="Create Post" secondary={true} style={styles.categoryStyle} onClick={this.handleOpen} />
                     </CardActions>
                 </Card>
@@ -60,6 +64,7 @@ class Category extends Component {
 		return (
 			<div className="categoryContainer">
 				<div className="rows">
+                    <RaisedButton label="Show All" primary={true} style={styles.categoryStyle} onClick={() => this.props.getPosts()}/>
                     {this.renderCategory()}
                     <Dialog
                       title="Create a Post"
@@ -96,7 +101,9 @@ Category.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-    return {categories: state.CategoryReducer.categories}
+    return {
+        categories: state.CategoryReducer.categories
+    }
 }
 
 
