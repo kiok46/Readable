@@ -1,63 +1,58 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Categories.css';
 
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
-import {Card, CardActions, CardTitle} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import IndividualPost from './IndividualPost';
 
 class PostsContaner extends Component {
-
-    state = {
-      open: false,
-    };
-
-    handleOpen = () => {
-      this.setState({open: true});
-    };
-
-    handleClose = () => {
-      this.setState({open: false});
-    };
+    state= {
+        points: 0,
+        voted: false,
+        voteType: undefined,
+    }
 
     componentWillMount() {
         this.props.getPosts();
     }
 
+
+
+    // '#FF8b60' '#9494FF'
+
     renderPosts = () => {
         return this.props.posts.map((post, idx) => {
             return (
-                <Card className="row" style={{ margin: 3, width: '100%'}} key={idx}>
-                    <CardTitle title={post.title} />
-                    <CardActions>
-                      <RaisedButton label="Edit" style={styles.categoryStyle} />
-                      <RaisedButton label="Delete" style={styles.categoryStyle} onClick={this.handleOpen} />
-                    </CardActions>
-                </Card>
+                <IndividualPost
+                    title={post.title}
+                    category={post.category}
+                    body={post.body}
+                />
             )
         })
     }
-
 	render() {
-
 		return (
-			<div>
-				<div className="rows">
-                    {this.renderPosts()}
-				</div>
+			<div className="rows">
+                {this.renderPosts()}
 			</div>
 		)
 	}
 }
 
 const styles = {
-  categoryStyle: {
+  actionButtonStyle: {
     margin: 12,
+  },
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    margin: 10,
+  },
+  chip: {
+    margin: 10,
+    paddingTop: 3,
   },
   root: {
     display: 'flex',

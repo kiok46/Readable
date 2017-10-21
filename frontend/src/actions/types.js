@@ -2,6 +2,8 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 
 export const GET_POSTS = 'GET_POSTS';
 
+export const GET_POSTS_OF_CATEGORY = 'GET_POSTS_OF_CATEGORY';
+
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const REMOVE_POST = 'REMOVE_POST';
