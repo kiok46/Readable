@@ -18,9 +18,6 @@ class PostsContaner extends Component {
     }
 
 
-
-    // '#FF8b60' '#9494FF'
-
     renderPosts = () => {
         return this.props.posts.map((post, idx) => {
             return (
@@ -34,7 +31,7 @@ class PostsContaner extends Component {
     }
 	render() {
 		return (
-			<div className="rows">
+			<div>
                 {this.renderPosts()}
 			</div>
 		)

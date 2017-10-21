@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Card, CardActions, CardTitle, CardHeader} from 'material-ui/Card';
+import Dialog from 'material-ui/Dialog';
 import Chip from 'material-ui/Chip';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import ThumbDown from 'material-ui/svg-icons/action/thumb-down';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
+
+import EditPostDialog from './Dialogs/EditPostDialog';
+import CreatePostDialog from './Dialogs/CreatePostDialog';
+import ConfirmDeleteDialog from './Dialogs/CreatePostDialog';
 
 
 class IndividualPost extends Component {
@@ -15,6 +22,12 @@ class IndividualPost extends Component {
         voted: false,
         voteType: undefined,
     }
+
+    openEditDialog = () => {
+    };
+
+    openDeleteDialog = () => {
+    };
 
 	onUpVote = () => {
         if (this.state.voted && this.state.voteType === 'up'){
@@ -94,10 +107,21 @@ class IndividualPost extends Component {
                              {this.state.points}
                         </Chip>
                     </div>
+					<FlatButton label={`Comments: ${this.props.comments}`} />
                 <CardActions>
-                  <RaisedButton label="Edit" style={styles.actionButtonStyle} />
-                  <RaisedButton label="Delete" style={styles.actionButtonStyle} onClick={this.handleOpen} />
+                  <RaisedButton
+				  	  label="Edit"
+					  onClick={this.openEditDialog}
+					  style={styles.actionButtonStyle}
+				  />
+                  <RaisedButton
+				      label="Delete"
+					  style={styles.actionButtonStyle}
+					  onClick={this.openDeleteDialog}
+					  icon={<DeleteIcon color={'red'}/>}
+				  />
                 </CardActions>
+
             </Card>
 		)
 	}
@@ -127,6 +151,12 @@ const styles = {
     overflowY: 'auto',
   },
 };
+
+IndividualPost.defaultProps = {
+	comments: 3,
+	points: 0,
+}
+
 
 IndividualPost.propTypes = {
 }
